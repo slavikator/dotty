@@ -11,10 +11,12 @@ return {
       css = { "prettier" },
       markdown = { "prettier" },
     },
-    format_on_save = {
-      timeout_ms = 500,
-      lsp_fallback = true,
-    },
+    format_on_save = false,
   },
+  init = function()
+    vim.keymap.set({"n", "v"}, "<leader>f", function()
+      require("conform").format({async = true, lsp_fallback = true})
+    end, {desc = "Format"})
+  end,
 }
 
