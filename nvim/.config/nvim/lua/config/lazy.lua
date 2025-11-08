@@ -1,3 +1,7 @@
+-- This file bootstraps the lazy.nvim plugin manager.
+-- It ensures that lazy.nvim is installed and then sets it up to load plugins
+-- from the 'lua/plugins' directory.
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -8,7 +12,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Підключаємо усі плагіни з папки lua/plugins
+-- Load all plugins from the lua/plugins folder
 require("lazy").setup("plugins", {
   change_detection = { notify = false },
 })

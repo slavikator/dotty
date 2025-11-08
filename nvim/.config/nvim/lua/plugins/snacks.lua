@@ -1,3 +1,6 @@
+-- This file configures the snacks.nvim plugin.
+-- Snacks is a collection of quality-of-life features, including pickers, UI enhancements, and more.
+
 return {
   "folke/snacks.nvim",
   priority = 1000,

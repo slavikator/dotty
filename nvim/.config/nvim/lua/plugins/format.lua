@@ -1,3 +1,6 @@
+-- This file configures the conform.nvim plugin for code formatting.
+-- It sets up formatters for different file types and a keymap to trigger formatting.
+
 return {
   "stevearc/conform.nvim",
   opts = {

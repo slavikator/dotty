@@ -1,14 +1,17 @@
+-- This file configures the nvim-cmp completion plugin and its dependencies.
+-- nvim-cmp provides autocompletion for various sources like LSP, buffers, and paths.
+
 return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp", -- LSP підказки
-      "hrsh7th/cmp-buffer", -- буферні слова
-      "hrsh7th/cmp-path", -- шляхи
-      "hrsh7th/cmp-cmdline", -- автодоповнення у : команді
-      "saadparwaiz1/cmp_luasnip", -- підтримка сніпетів
-      "L3MON4D3/LuaSnip", -- рушій сніпетів
-      "rafamadriz/friendly-snippets", -- готові VSCode-сніпети
+      "hrsh7th/cmp-nvim-lsp", -- LSP suggestions
+      "hrsh7th/cmp-buffer", -- buffer words
+      "hrsh7th/cmp-path", -- paths
+      "hrsh7th/cmp-cmdline", -- autocompletion in : command
+      "saadparwaiz1/cmp_luasnip", -- snippet support
+      "L3MON4D3/LuaSnip", -- snippet engine
+      "rafamadriz/friendly-snippets", -- ready-made VSCode snippets
     },
     config = function()
       local cmp = require("cmp")
