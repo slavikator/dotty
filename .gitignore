@@ -1,4 +1,5 @@
 .DS_Store
 *.swp
 *~
+lazy-lock.json
 EOF
