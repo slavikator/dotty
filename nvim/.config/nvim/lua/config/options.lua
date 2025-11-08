@@ -23,7 +23,6 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
     if vim.bo.filetype ~= "dashboard" then
       vim.wo.number = true
       vim.wo.relativenumber = false
-      require("snacks").toggle.line_number():enable()
     end
   end,
 })
