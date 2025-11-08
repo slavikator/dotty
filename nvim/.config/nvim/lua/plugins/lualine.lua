@@ -55,7 +55,12 @@ return {
         lualine_z = {},
       },
       tabline = {
-        lualine_a = { "buffers" },
+        lualine_c = {
+	  {	
+	    "buffers",
+	    mode = 2,
+          }  
+        },
         lualine_z = { "tabs" },
       },
       winbar = {},
