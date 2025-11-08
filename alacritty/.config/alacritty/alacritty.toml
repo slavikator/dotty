@@ -4,4 +4,7 @@ import = [
 ]
 
 [font]
+normal = { family = "MesloLGL Nerd Font", style = "Regular" }
+bold   = { family = "MesloLGL Nerd Font", style = "Bold" }
+italic = { family = "MesloLGL Nerd Font", style = "Italic" }
 size   = 14.0
