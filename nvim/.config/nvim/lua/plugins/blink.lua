@@ -7,9 +7,9 @@ return {
   },
   version = '1.*', -- use a release tag for pre-built binaries
   opts = {
-    keymap = { preset = 'default' },
+    keymap = { preset = 'super-tab' },
     appearance = { nerd_font_variant = 'mono' },
-    completion = { documentation = { auto_show = false } },
+    completion = { documentation = { auto_show = true } },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
     },

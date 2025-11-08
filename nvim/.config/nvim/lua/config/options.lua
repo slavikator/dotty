@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
   callback = function()
     if vim.bo.filetype ~= "dashboard" then
       vim.wo.number = true
-      vim.wo.relativenumber = false
+      vim.wo.relativenumber = true
     end
   end,
 })
