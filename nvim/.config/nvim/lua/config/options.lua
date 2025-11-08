@@ -10,3 +10,15 @@ vim.api.nvim_create_autocmd("InsertEnter", {
   pattern = "*",
   command = "nohlsearch",
 })
+
+-- Автоматичне включення нумерації та statuscolumn для реальних документів
+vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
+  callback = function()
+    if vim.bo.filetype ~= "dashboard" then
+      vim.wo.number = true
+      vim.wo.relativenumber = true
+      require("snacks").toggle.line_number():enable()
+    end
+  end,
+})
+
