@@ -5,7 +5,7 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    local custom_fname = require('lualine_custom.filename')
+    local custom_fname = require('plugins/lualine_custom.filename')
     require("lualine").setup({
       options = {
         icons_enabled = true,
