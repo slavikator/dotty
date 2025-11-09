@@ -1,3 +1,9 @@
+-- Cmd+X — cut selection to system clipboard
+vim.keymap.set('v', '<D-x>', '"+d', { desc = 'Cut to system clipboard' })
+
+-- Cmd+A — select all text in the buffer
+vim.keymap.set({'n', 'v', 'i'}, '<D-a>', '<Esc>ggVG', { desc = 'Select all' })
+
 -- Next/Previous buffer
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { desc = "Previous buffer" })

@@ -21,12 +21,4 @@ function custom_fname:update_status()
   return data
 end
 
-function custom_fname:on_click()
-  print("on_click called")
-  local filepath = vim.api.nvim_buf_get_name(0)
-  local relative_path = vim.fn.fnamemodify(filepath, ':.')
-  vim.fn.setreg('+', relative_path)
-  print('Copied to clipboard: ' .. relative_path)
-end
-
 return custom_fname
