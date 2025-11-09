@@ -75,7 +75,7 @@ return {
           }
         },
         lualine_b = { "branch", "diff" },
-        lualine_c = {custom_fname},
+        lualine_c = {{custom_fname, path = 1}},
         lualine_x = { "encoding", "fileformat", "filetype" },
         lualine_y = { "progress" },
         lualine_z = {
