@@ -106,6 +106,10 @@ return {
                 -- 2: Shows buffer name + buffer index
                 -- 3: Shows buffer number
                 -- 4: Shows buffer name + buffer number
+            buffers_color = {
+              active = { bg = '#228B22', fg = '#ffffff' },     -- Color for active buffer.
+              inactive = 'lualine_b_inactive', -- Color for inactive buffer.
+            },
             symbols = {
               modified = ' ●',      -- Text to show when the buffer is modified
               alternate_file = '#', -- Text to show to identify the alternate file
