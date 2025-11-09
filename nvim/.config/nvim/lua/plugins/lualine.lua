@@ -9,7 +9,7 @@ return {
     require("lualine").setup({
       options = {
         icons_enabled = true,
-        theme = "auto",
+        theme = "codedark",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
@@ -107,8 +107,8 @@ return {
                 -- 3: Shows buffer number
                 -- 4: Shows buffer name + buffer number
             buffers_color = {
-              active = { bg = '#228B22', fg = '#ffffff' },     -- Color for active buffer.
-              inactive = 'lualine_b_inactive', -- Color for inactive buffer.
+              active = 'lualine_a_active',     -- Color for active buffer.
+              inactive = 'lualine_a_inactive', -- Color for inactive buffer.
             },
             symbols = {
               modified = ' ●',      -- Text to show when the buffer is modified
