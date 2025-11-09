@@ -14,7 +14,7 @@ return {
       css = { "prettier" },
       markdown = { "prettier" },
     },
-    format_on_save = false,
+    format_on_save = true,
   },
   init = function()
     vim.keymap.set({"n", "v"}, "<leader>f", function()
