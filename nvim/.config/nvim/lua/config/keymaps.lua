@@ -8,6 +8,26 @@ vim.keymap.set({ 'n', 'v', 'i' }, '<D-a>', '<Esc>ggVG', { desc = 'Select all' })
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { desc = 'Previous buffer' })
 
+-- Next/Previous tab
+vim.keymap.set('n', '[t', ':tabprevious<CR>', { desc = 'Previous tab' })
+vim.keymap.set('n', ']t', ':tabnext<CR>', { desc = 'Next tab' })
+
+-- New/Close tab
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'New tab' })
+vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = 'Close tab' })
+
+-- Jump to tab by number (1–9)
+for i = 1, 9 do
+  vim.keymap.set('n', string.format('<leader>t%d', i), function()
+    local tabpages = vim.api.nvim_list_tabpages()
+    if tabpages[i] then
+      vim.api.nvim_set_current_tabpage(tabpages[i])
+    else
+      vim.notify('Tab ' .. i .. ' does not exist', vim.log.levels.WARN)
+    end
+  end, { desc = 'Go to tab ' .. i })
+end
+
 -- Copy relative file path
 vim.keymap.set('n', '<leader>cp', function()
   local path = vim.fn.expand '%:.'
