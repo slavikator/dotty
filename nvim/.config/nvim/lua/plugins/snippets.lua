@@ -11,7 +11,8 @@ return {
     config = function()
       local ls = require("luasnip")
       require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_lua").load({ paths = { "./lua/plugins/snippets" } })
+      require("luasnip").filetype_extend("typescript", { "javascript" })
+      require("luasnip").filetype_extend("typescriptreact", { "javascript" })
 
       ls.config.set_config({
         history = true,

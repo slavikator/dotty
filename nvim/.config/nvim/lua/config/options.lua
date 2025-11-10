@@ -7,6 +7,7 @@ vim.o.number = true
 vim.o.incsearch = true
 
 vim.o.hlsearch = true
+vim.wo.signcolumn = 'yes'
 
 -- Clear search highlight on <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", { desc = "Clear search highlight" })
