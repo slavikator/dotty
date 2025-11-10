@@ -29,10 +29,10 @@ return {
     telescope.load_extension 'file_browser'
 
     -- Keymaps for file_browser
-    vim.keymap.set('n', '<leader>fb', '<cmd>Telescope file_browser<cr>', { desc = 'File Browser' })
+    vim.keymap.set('n', '<leader>fB', '<cmd>Telescope file_browser<cr>', { desc = 'File Browser' })
     vim.keymap.set(
       'n',
-      '<leader>fB',
+      '<leader>fb',
       '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>',
       { desc = 'File Browser (current file dir)' }
     )

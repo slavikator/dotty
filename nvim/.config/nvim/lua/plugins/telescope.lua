@@ -28,5 +28,6 @@ return {
     )
     vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = 'Live Grep' })
     vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = 'Recent Files' })
+    vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>', { desc = 'Find Buffers' })
   end,
 }
