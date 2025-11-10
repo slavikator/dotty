@@ -1,7 +1,9 @@
 -- lua/plugins/telescope.lua
 return {
   'nvim-telescope/telescope.nvim',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = {
+    'nvim-telescope/telescope-file-browser.nvim',
+  },
   config = function()
     local telescope = require 'telescope'
     local actions = require 'telescope.actions'
