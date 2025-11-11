@@ -1,8 +1,19 @@
--- Cmd+X — cut selection to system clipboard
-vim.keymap.set('v', '<D-x>', '"+d', { desc = 'Cut to system clipboard' })
+-- Visual mode: paste over selection without yanking replaced text
+vim.keymap.set('x', '<leader>p', [["_dP]])
 
--- Cmd+A — select all text in the buffer
-vim.keymap.set({ 'n', 'v', 'i' }, '<D-a>', '<Esc>ggVG', { desc = 'Select all' })
+-- Yank to system clipboard
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
+vim.keymap.set('n', '<leader>Y', [["+Y]])
+
+-- Delete without yanking
+vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d')
+
+-- Move selected lines up/down in visual mode
+vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv') -- Move selection down
+vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv') -- Move selection up
+
+-- Make current file executable
+vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
 
 -- Next/Previous buffer
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', { desc = 'Next buffer' })
@@ -15,6 +26,9 @@ vim.keymap.set('n', ']t', ':tabnext<CR>', { desc = 'Next tab' })
 -- New/Close tab
 vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'New tab' })
 vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = 'Close tab' })
+
+-- Clear search highlight on <Esc> in normal mode
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR><Esc>', { desc = 'Clear search highlight' })
 
 -- Jump to tab by number (1–9)
 for i = 1, 9 do
