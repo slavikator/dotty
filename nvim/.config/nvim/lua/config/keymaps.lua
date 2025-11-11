@@ -12,6 +12,23 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d')
 vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv') -- Move selection down
 vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv') -- Move selection up
 
+-- Join lines without moving cursor
+vim.keymap.set('n', 'J', 'mzJ`z')
+
+-- Keep cursor centered when scrolling
+vim.keymap.set('n', '<C-d>', '<C-d>zz') -- Half-page down
+vim.keymap.set('n', '<C-u>', '<C-u>zz') -- Half-page up
+
+-- Keep search matches centered
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
+-- Re-indent paragraph and restore cursor position
+vim.keymap.set('n', '=ap', 'ma=ap\'a')
+
+-- Restart LSP server
+vim.keymap.set('n', '<leader>zig', '<cmd>LspRestart<cr>')
+
 -- Make current file executable
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
 
