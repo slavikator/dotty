@@ -5,8 +5,8 @@
 -- vim.o.number = true -- Show absolute line numbers on the left
 
 -- Search
-vim.o.incsearch = true -- Show search matches incrementally while typing
-vim.o.hlsearch = true -- Highlight all matches of the last search
+vim.opt.incsearch = true -- Keep incremental search enabled
+vim.opt.hlsearch = true -- Highlight all matches of the last search
 
 -- Cursor style (commented out)
 -- vim.opt.guicursor = ''           -- Use default cursor style
@@ -26,10 +26,6 @@ vim.opt.swapfile = false -- Disable swapfile creation
 vim.opt.backup = false -- Disable backup files
 vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir' -- Directory to store undo files
 vim.opt.undofile = true -- Enable persistent undo
-
--- Search highlighting (redundant with previous, but left as override)
-vim.opt.hlsearch = false -- Disable highlighting search matches
-vim.opt.incsearch = true -- Keep incremental search enabled
 
 -- Colors
 vim.opt.termguicolors = true -- Enable 24-bit RGB color support

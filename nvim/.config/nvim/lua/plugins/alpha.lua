@@ -8,12 +8,12 @@ return {
 
     -- Header
     dashboard.section.header.val = {
-      '███╗   ██╗ ██████╗ ██╗  ██╗ █████╗ ',
-      '████╗  ██║██╔═══██╗██║  ██║██╔══██╗',
-      '██╔██╗ ██║██║   ██║███████║███████║',
-      '██║╚██╗██║██║   ██║██╔══██║██╔══██║',
-      '██║ ╚████║╚██████╔╝██║  ██║██║  ██║',
-      '╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚╝  ╚═╝',
+      '███████╗██╗      █████╗ ██╗   ██╗██╗██╗  ██╗ █████╗ ████████╗ ██████╗ ██████╗ ',
+      '██╔════╝██║     ██╔══██╗██║   ██║██║██║ ██╔╝██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗',
+      '███████╗██║     ███████║██║   ██║██║█████╔╝ ███████║   ██║   ██║   ██║██████╔╝',
+      '╚════██║██║     ██╔══██║╚██╗ ██╔╝██║██╔═██╗ ██╔══██║   ██║   ██║   ██║██╔══██╗',
+      '███████║███████╗██║  ██║ ╚████╔╝ ██║██║  ██╗██║  ██║   ██║   ╚██████╔╝██║  ██║',
+      '╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝',
     }
     dashboard.section.header.opts.hl = 'Type'
 
@@ -21,7 +21,11 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button('n', '  New file', ':enew<CR>'),
       dashboard.button('f', '  Find file', '<cmd>Telescope find_files<CR>'),
-      dashboard.button('b', '  File Browser', ":lua require('telescope').extensions.file_browser.file_browser({ cwd = vim.fn.expand('~') })<CR>"),
+      dashboard.button(
+        'b',
+        '  File Browser',
+        ':lua require(\'telescope\').extensions.file_browser.file_browser({ cwd = vim.fn.expand(\'~\') })<CR>'
+      ),
       dashboard.button('r', '  Recent files', '<cmd>Telescope oldfiles<CR>'),
       dashboard.button('g', '  Grep text', '<cmd>Telescope live_grep<CR>'),
       dashboard.button(
@@ -36,7 +40,7 @@ return {
     dashboard.section.buttons.opts.hl = 'Function'
 
     -- Footer
-    dashboard.section.footer.val = 'dotty config'
+    dashboard.section.footer.val = 'SLAVIKATOR mode engaged'
     dashboard.section.footer.opts.hl = 'Comment'
 
     alpha.setup(dashboard.opts)

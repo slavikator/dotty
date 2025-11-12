@@ -1,3 +1,11 @@
+-- Шорткат для live grep з можливістю replace
+vim.keymap.set(
+  'n',
+  '<leader>R',
+  function() require('telescope').extensions.live_grep_args.live_grep_args() end,
+  { desc = 'Find & Replace via Telescope' }
+)
+
 -- Visual mode: paste over selection without yanking replaced text
 vim.keymap.set('x', '<leader>p', [["_dP]])
 

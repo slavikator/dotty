@@ -1,7 +1,8 @@
 -- Clear search highlight when entering insert mode
 vim.api.nvim_create_autocmd('InsertEnter', {
-  pattern = '*',
-  command = 'nohlsearch',
+  callback = function()
+    if vim.v.hlsearch == 1 then vim.cmd 'nohlsearch' end
+  end,
 })
 
 -- Automatic enabling of numbering and statuscolumn for real documents
