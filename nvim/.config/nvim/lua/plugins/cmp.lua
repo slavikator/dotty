@@ -11,6 +11,7 @@ return {
   config = function()
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
+
     cmp.setup({
       snippet = {
         expand = function(args) luasnip.lsp_expand(args.body) end,
@@ -35,7 +36,7 @@ return {
           winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None',
         }),
         documentation = cmp.config.window.bordered({
-          border = 'single',
+          border = { '🭽', '─', '🭾', '│', '🭿', '─', '🭼', '│' },
           zindex = 1000,
           col_offset = 2,
           scrolloff = 2,
