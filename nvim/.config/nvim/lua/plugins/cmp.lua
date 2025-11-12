@@ -36,7 +36,7 @@ return {
           winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None',
         }),
         documentation = cmp.config.window.bordered({
-          border = { '🭽', '─', '🭾', '│', '🭿', '─', '🭼', '│' },
+          border = 'double',
           zindex = 1000,
           col_offset = 2,
           scrolloff = 2,

@@ -16,7 +16,7 @@ return {
       enable_diagnostics = true,
 
       window = {
-        position = 'left',
+        position = 'right',
         width = 40,
         mappings = {
           ['a'] = 'add', -- create a new file or directory
