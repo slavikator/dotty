@@ -19,13 +19,37 @@ return {
         ['<C-n>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
       }),
-      preselect = 'none',
+      preselect = cmp.PreselectMode.None,
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
       }),
+      window = {
+        completion = cmp.config.window.bordered({
+          border = 'double',
+          zindex = 1001,
+          col_offset = 2,
+          scrolloff = 2,
+          winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None',
+        }),
+        documentation = cmp.config.window.bordered({
+          border = 'single',
+          zindex = 1000,
+          col_offset = 2,
+          scrolloff = 2,
+          winhighlight = 'Normal:CmpDoc,FloatBorder:CmpBorder',
+        }),
+      },
+
+      formatting = {
+        fields = { 'abbr', 'kind', 'menu' },
+        format = function(entry, vim_item)
+          vim_item.abbr = ' ' .. vim_item.abbr .. ' ' -- add left/right padding
+          return vim_item
+        end,
+      },
     })
   end,
 }
