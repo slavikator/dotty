@@ -17,8 +17,10 @@ return {
         expand = function(args) luasnip.lsp_expand(args.body) end,
       },
       mapping = cmp.mapping.preset.insert({
-        ['<C-n>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
       }),
       preselect = cmp.PreselectMode.None,
       sources = cmp.config.sources({
