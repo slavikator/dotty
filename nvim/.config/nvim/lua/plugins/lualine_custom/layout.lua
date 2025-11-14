@@ -1,8 +1,12 @@
 local M = {}
 
+local term_program = vim.env.TERM_PROGRAM
+local term_supports_emoji = (term_program == 'ghostty' or term_program == 'iTerm.app')
+local use_emoji = vim.fn.has 'gui_running' == 1 or term_supports_emoji
+
 local icons = {
-  ukrainian = '🇺🇦',
-  us = '🇺🇸',
+  ukrainian = use_emoji and '🇺🇦' or 'UA',
+  us = use_emoji and '🇺🇸' or 'EN',
   unknown = '??',
 }
 
