@@ -1,5 +1,11 @@
 local M = {}
 
+local icons = {
+  ukrainian = vim.fn.has 'gui_running' == 1 and '🇺🇦' or 'UA',
+  us = vim.fn.has 'gui_running' == 1 and '🇺🇸' or 'EN',
+  unknown = '??',
+}
+
 local cached = ''
 local last_check = 0
 
@@ -21,11 +27,11 @@ local function get_layout()
     local layout_name = out:lower()
 
     if layout_name:match 'ukrain' then
-      cached = 'UA'
+      cached = icons.ukrainian
     elseif layout_name:match 'us' or layout_name:match 'u.s.' or layout_name:match 'abc' then
-      cached = 'EN'
+      cached = icons.us
     else
-      cached = '??'
+      cached = icons.unknown
     end
 
     return cached
@@ -36,7 +42,14 @@ local function get_layout()
     local out = handle:read '*a' or ''
     handle:close()
 
-    cached = out:upper():gsub('%s+', '')
+    local layout = out:upper():gsub('%s+', '')
+    if layout == 'UA' then
+      cached = icons.ukrainian
+    elseif layout == 'US' then
+      cached = icons.us
+    else
+      cached = icons.unknown
+    end
     return cached
   end
 end
@@ -44,3 +57,4 @@ end
 M.layout = function() return get_layout() end
 
 return M
+
