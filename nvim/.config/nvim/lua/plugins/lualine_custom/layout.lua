@@ -1,8 +1,8 @@
 local M = {}
 
 local icons = {
-  ukrainian = vim.fn.has 'gui_running' == 1 and '🇺🇦' or 'UA',
-  us = vim.fn.has 'gui_running' == 1 and '🇺🇸' or 'EN',
+  ukrainian = '🇺🇦',
+  us = '🇺🇸',
   unknown = '??',
 }
 
@@ -19,7 +19,7 @@ local function get_layout()
   if uname == 'Darwin' then
     -- macOS
     local handle =
-      io.popen [[defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources | grep "KeyboardLayout Name" | awk -F '"' '{print $4}']]
+      io.popen [[defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources | grep "KeyboardLayout Name" | sed -e 's/.*= *//' -e 's/;//' -e 's/"//g']]
     if not handle then return cached end
     local out = handle:read '*a' or ''
     handle:close()
