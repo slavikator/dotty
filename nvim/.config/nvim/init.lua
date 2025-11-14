@@ -1,9 +1,2 @@
--- Main Neovim configuration entry point
--- Sets global leader keys and loads options and plugins.
-
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-require 'config.options'
-require 'config.lazy'
-require 'config.keymaps'
-require 'config.autocommands'
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
