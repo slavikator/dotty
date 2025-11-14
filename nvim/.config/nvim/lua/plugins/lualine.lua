@@ -77,10 +77,10 @@ return {
         },
         lualine_b = { 'branch', 'diff' },
         lualine_c = { { custom_fname, path = 1 } },
-        lualine_x = { 'encoding', 'fileformat', 'filetype', layout.layout },
-        lualine_y = { 'progress' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress', 'location' },
         lualine_z = {
-          'location',
+          layout.layout,
           {
             'datetime',
             style = '%H:%M',
