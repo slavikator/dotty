@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   opts = function(_, opts)
     local layout = require("plugins/lualine_custom.layout")
-    table.insert(opts.sections.lualine_z, 1, {
+    table.insert(opts.sections.lualine_y, {
       layout.layout,
     })
   end,
