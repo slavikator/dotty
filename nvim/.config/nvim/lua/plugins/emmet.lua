@@ -1,8 +1,8 @@
 return {
   "olrtg/nvim-emmet",
-  ft = { "html", "css", "javascriptreact", "typescriptreact", "vue", "svelte", "astro" }, -- Adjust filetypes as needed
+  ft = { "html", "css", "javascript", "javascriptreact", "typescriptreact", "vue", "svelte", "astro" }, -- Adjust filetypes as needed
   config = function()
-    vim.keymap.set({ "n", "v" }, "<leader>xe", require("nvim-emmet").wrap_with_abbreviation)
+    vim.keymap.set({ "n", "v" }, "<C-y>", require("nvim-emmet").wrap_with_abbreviation)
 
     -- Setup emmet-language-server
     local lspconfig = require("lspconfig")
@@ -14,6 +14,7 @@ return {
       filetypes = {
         "html",
         "css",
+        "javascript",
         "javascriptreact",
         "typescriptreact",
         "vue",
@@ -24,3 +25,4 @@ return {
     })
   end,
 }
+
