@@ -28,3 +28,22 @@ vim.keymap.set("n", "<leader>ut", function()
   end
   vim.notify("Could not find TypeScript extra line in lazy.lua.", vim.log.levels.WARN, { title = "LazyVim" })
 end, { desc = "Toggle TypeScript Extra" })
+
+
+-- Toggle Emmet
+vim.keymap.set("n", "<leader>ue", function()
+  _G.emmet_enabled = not _G.emmet_enabled
+
+  if _G.emmet_enabled then
+    vim.notify("Emmet enabled")
+  else
+    vim.notify("Emmet disabled")
+
+    -- stop running Emmet LSP clients
+    for _, client in pairs(vim.lsp.get_active_clients()) do
+      if client.name == "emmet_language_server" then
+        client.stop(true)
+      end
+    end
+  end
+end, { desc = "Toggle Emmet LSP" })
