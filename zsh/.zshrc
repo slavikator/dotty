@@ -36,3 +36,5 @@ if command -v fzf >/dev/null; then
   bindkey '^R' fzf-history-widget
 fi
 
+# zoxide
+eval "$(zoxide init zsh)"
