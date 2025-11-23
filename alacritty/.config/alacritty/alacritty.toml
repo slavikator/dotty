@@ -1,6 +1,6 @@
 [general]
 import = [
-  "~/.config/alacritty/themes/0x96f.toml"
+  "~/.config/alacritty/themes/catppuccin-mocha.toml"
 ]
 
 [font]
@@ -8,3 +8,7 @@ normal = { family = "MesloLGL Nerd Font", style = "Regular" }
 bold   = { family = "MesloLGL Nerd Font", style = "Bold" }
 italic = { family = "MesloLGL Nerd Font", style = "Italic" }
 size   = 14.0
+
+[window]
+opacity = 0.5
+blur = true
