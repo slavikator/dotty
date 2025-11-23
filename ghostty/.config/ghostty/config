@@ -1,5 +1,7 @@
 font-size = 14
-font-family = "JetBrains Mono"
+font-family = "MesloLGL Nerd Font"
 theme = "Catppuccin Mocha"
 background-opacity = 0.8
 background-blur-radius = 20
+window-width = 120
+window-height = 35
