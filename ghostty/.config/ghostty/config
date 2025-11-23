@@ -1,5 +1,5 @@
 font-size = 14
 font-family = "JetBrains Mono"
-theme = 0x96f
+theme = "Catppuccin Mocha"
 background-opacity = 0.8
 background-blur-radius = 20
