@@ -38,3 +38,11 @@ fi
 
 # zoxide
 eval "$(zoxide init zsh)"
+
+# Aider + Ollama Config
+export OLLAMA_API_BASE="http://localhost:11434"
+export OLLAMA_NUM_CTX=32768
+# Optional: If you want Aider to always use your M1's GPU effectively
+export CMAKE_ARGS="-DLLAMA_METAL=on"
+export AIDER_MODEL="ollama_chat/deepseek-r1:8b"
+export AIDER_ARCHITECT=true
