@@ -39,10 +39,50 @@ fi
 # zoxide
 eval "$(zoxide init zsh)"
 
-# Aider + Ollama Config
-export OLLAMA_API_BASE="http://localhost:11434"
-export OLLAMA_NUM_CTX=32768
-# Optional: If you want Aider to always use your M1's GPU effectively
-export CMAKE_ARGS="-DLLAMA_METAL=on"
-export AIDER_MODEL="ollama_chat/deepseek-r1:8b"
-export AIDER_ARCHITECT=true
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Android SDK platform-tools
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+
+
+# =================================================================
+# --- 16GB M1 PRO OPTIMIZED OLLAMA CONFIG (STABILIZED) ---
+# =================================================================
+
+# --- PERFORMANCE ---
+export OLLAMA_CONTEXT_LENGTH=32768
+export OLLAMA_METAL=1
+export OLLAMA_FLASH_ATTENTION=1
+export OLLAMA_KEEP_ALIVE=3h
+
+# --- THE CLOUD FLEET (FREE TIER VERIFIED) ---
+
+# [ga] - THE ARCHITECT (Qwen 3.5 397B)
+# The "Heavy Lifter." Use for high-level logic, complex system design, 
+# and multi-step reasoning. Your most powerful planning model.
+alias ga='ollama launch claude --model qwen3.5:397b-cloud -- --permission-mode auto --dangerously-skip-permissions'
+
+# [gx] - THE FIXER (Qwen3-Coder Next)
+# The "Coding King." Specifically tuned for agentic execution, 
+# debugging, and writing code. This is your primary engineering tool.
+alias gx='ollama launch claude --model qwen3-coder-next:cloud -- --permission-mode auto --dangerously-skip-permissions'
+
+# [gg] - THE DAILY DRIVER (Gemma 4 31B)
+# The "Reliable Specialist." Your verified daily driver for 
+# general questions, shell scripts, and rapid-fire explanations.
+alias gg='ollama launch claude --model gemma4:31b-cloud -- --permission-mode auto --dangerously-skip-permissions'
+
+# [gd] - THE ANALYST (Kimi K2.5)
+# The "Context King." Best for reading massive repositories, 
+# log files, and repo-wide documentation analysis.
+alias gd='ollama launch claude --model kimi-k2.5:cloud -- --permission-mode auto --dangerously-skip-permissions'
+
+# --- THE LOCAL FALLBACKS (Zero Quota Impact) ---
+
+# [gl] - LOCAL AGENT (Gemma 4 4B)
+# Full agentic capabilities running locally on your M1 Pro GPU.
+alias gl='ollama launch claude --model gemma4:e4b -- --permission-mode auto --dangerously-skip-permissions'
+
+# [g] - QUICK CHAT (Gemma 4 4B)
+alias g='ollama run gemma4:e4b'
