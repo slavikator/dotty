@@ -14,13 +14,13 @@ local cached = ""
 local last_check = 0
 
 local function get_layout()
-  local now = vim.loop.hrtime() / 1e9
+  local now = vim.uv.hrtime() / 1e9
   if now - last_check < 0.5 then
     return cached
   end
   last_check = now
 
-  local uname = vim.loop.os_uname().sysname
+  local uname = vim.uv.os_uname().sysname
 
   if uname == "Darwin" then
     -- macOS
@@ -32,11 +32,12 @@ local function get_layout()
     local out = handle:read("*a") or ""
     handle:close()
 
-    local layout_name = out:lower()
+    local layout_name = vim.trim(out:lower())
 
     if layout_name:match("ukrain") then
       cached = icons.ukrainian
-    elseif layout_name:match("us") or layout_name:match("u.s.") or layout_name:match("abc") then
+    -- anchored, so e.g. "Russian" doesn't count as US
+    elseif layout_name:match("^u%.?s%.?") or layout_name:match("^abc") then
       cached = icons.us
     else
       cached = icons.unknown

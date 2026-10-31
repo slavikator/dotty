@@ -9,8 +9,8 @@ vim.keymap.set("n", "<leader>a", "ggVG", { desc = "Select whole file" })
 vim.keymap.set("n", "<leader>A", ":%y+<CR>", { desc = "Yank whole file to clipboard" })
 
 -- Move selected lines up/down in visual mode
-vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv', {desc = 'Move selected lines up'})
-vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', {desc = 'Move selected lines down'})
+vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv', {desc = 'Move selected lines down'})
+vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', {desc = 'Move selected lines up'})
 
 -- Restart LSP server
 vim.keymap.set('n', '<leader>zr', '<cmd>LspRestart<cr>', {desc = 'Restart LSP server'})
@@ -28,20 +28,10 @@ vim.keymap.set('n', '<leader>zcr', function()
   print('📋 Copied relative path: ' .. path)
 end, { desc = 'Copy relative file path' })
 
--- Jump to buffer by number (1–9)
+-- Jump to buffer by its bufferline ordinal number (1–9)
 for i = 1, 9 do
   vim.keymap.set('n', string.format('<leader>%d', i), function()
-    local bufs = vim.api.nvim_list_bufs()
-    local valid_bufs = vim.tbl_filter(
-      function(b) return vim.api.nvim_buf_is_loaded(b) and vim.bo[b].buflisted end,
-      bufs
-    )
-
-    if valid_bufs[i] then
-      vim.api.nvim_set_current_buf(valid_bufs[i])
-    else
-      vim.notify('Buffer ' .. i .. ' does not exist', vim.log.levels.WARN)
-    end
+    require('bufferline').go_to(i, true)
   end, { desc = 'Go to buffer ' .. i })
 end
 
@@ -52,25 +42,21 @@ vim.keymap.set('n', '<leader>zca', function()
   print('📋 Copied absolute path: ' .. path)
 end, { desc = 'Copy absolute file path' })
 
--- Toggle TypeScript extra
+-- Toggle TypeScript extra (stored in lazyvim.json, same as :LazyExtras)
 vim.keymap.set("n", "<leader>ut", function()
-  local path = vim.fn.stdpath("config") .. "/lua/config/lazy.lua"
-  local lines = vim.fn.readfile(path)
-  local ts_line = "lazyvim.plugins.extras.lang.typescript"
-  for i, line in ipairs(lines) do
-    if line:find(ts_line, 1, true) then
-      if line:find("^%-%-") then -- check if it's commented out
-        lines[i] = line:gsub("^%-%- ?", "") -- uncomment
-        vim.notify("Enabled TypeScript. Please restart Neovim.", vim.log.levels.INFO, { title = "LazyVim" })
-      else
-        lines[i] = "-- " .. line -- comment
-        vim.notify("Disabled TypeScript. Please restart Neovim.", vim.log.levels.INFO, { title = "LazyVim" })
-      end
-      vim.fn.writefile(lines, path)
-      return
-    end
+  local ts_extra = "lazyvim.plugins.extras.lang.typescript"
+  local data = LazyVim.config.json.data
+
+  if vim.tbl_contains(data.extras, ts_extra) then
+    data.extras = vim.tbl_filter(function(e) return e ~= ts_extra end, data.extras)
+    vim.notify("Disabled TypeScript. Please restart Neovim.", vim.log.levels.INFO, { title = "LazyVim" })
+  else
+    table.insert(data.extras, ts_extra)
+    table.sort(data.extras)
+    vim.notify("Enabled TypeScript. Please restart Neovim.", vim.log.levels.INFO, { title = "LazyVim" })
   end
-  vim.notify("Could not find TypeScript extra line in lazy.lua.", vim.log.levels.WARN, { title = "LazyVim" })
+
+  LazyVim.json.save()
 end, { desc = "Toggle TypeScript Extra" })
 
 
@@ -84,10 +70,8 @@ vim.keymap.set("n", "<leader>ue", function()
     vim.notify("Emmet disabled")
 
     -- stop running Emmet LSP clients
-    for _, client in pairs(vim.lsp.get_active_clients()) do
-      if client.name == "emmet_language_server" then
-        client.stop(true)
-      end
+    for _, client in ipairs(vim.lsp.get_clients({ name = "emmet_language_server" })) do
+      client:stop(true)
     end
   end
 end, { desc = "Toggle Emmet LSP" })

@@ -21,7 +21,8 @@ Built on [LazyVim](https://lazyvim.github.io/) — all LazyVim defaults are inhe
 **Entry point:** `nvim/.config/nvim/init.lua` → `config.lazy`
 
 **Config files** (`lua/config/`):
-- `lazy.lua` — plugin spec, enabled LazyVim extras (prettier, mini-surround, luasnip; TypeScript extra is toggleable via `<leader>ut`)
+- `lazy.lua` — lazy.nvim bootstrap and plugin spec
+- `nvim/.config/nvim/lazyvim.json` (config root, not in `lua/config/`) — enabled LazyVim extras (prettier, mini-surround, luasnip, docker, json, markdown, terraform, yaml); manage with `:LazyExtras`, TypeScript extra is toggleable via `<leader>ut`
 - `options.lua` — Neovim options; autoformat disabled for Lua files
 - `keymaps.lua` — custom keybindings (see below)
 - `autocmds.lua` — Emmet LSP auto-start for HTML/CSS/JSX filetypes

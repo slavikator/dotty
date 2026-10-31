@@ -37,7 +37,7 @@ Install [Neovim](https://neovim.io/) and open it — [lazy.nvim](https://github.
 
 Plugin versions are pinned in `lazy-lock.json` (committed), so every machine gets the same versions. Update them on purpose with `:Lazy update`, then commit the lock file.
 
-**LazyVim extras** (enabled in `lazyvim.json`): `lang.terraform`, `lang.yaml`, `lang.json`, `lang.markdown`, `lang.docker`. They bring language servers, format on save and linting:
+**LazyVim extras** (enabled in `lazyvim.json`, manage with `:LazyExtras`): `coding.luasnip`, `coding.mini-surround`, `formatting.prettier`, `lang.terraform`, `lang.yaml`, `lang.json`, `lang.markdown`, `lang.docker`. They bring language servers, format on save and linting:
 
 | Files | Tools |
 |---|---|
