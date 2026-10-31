@@ -5,6 +5,7 @@ return {
     spec = {
       { "<leader>z", group = "+custom", icon = "⚡" },
       { "<leader>zc", group = "+copy", icon = " "},
+      { "<leader>zcp", group = "+path", icon = "" },
     },
   },
 }

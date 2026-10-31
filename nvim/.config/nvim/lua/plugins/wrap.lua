@@ -41,5 +41,6 @@ vim.cmd("command -range WrapUL lua _G.WrapInUlLi(<line1>, <line2>)")
 
 -- Map the command in visual mode
 vim.keymap.set("v", "<C-y>", ":WrapUL<CR>", { desc = "Wrap selection in <ul><li>", silent = true })
+vim.keymap.set("v", "<leader>zl", ":WrapUL<CR>", { desc = "Wrap in list (<ul><li>)", silent = true })
 
 return {}
