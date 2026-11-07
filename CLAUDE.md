@@ -53,6 +53,7 @@ Built on [LazyVim](https://lazyvim.github.io/) — all LazyVim defaults are inhe
 | `<leader>zce` | n | Copy diagnostic message under cursor |
 | `<leader>zr` | n | Restart LSP server |
 | `<leader>zx` | n | Make current file executable |
+| `<leader>zo` | n | Jump to end of file, leave one empty line, start insert on a new line |
 | `<leader>ut` | n | Toggle TypeScript LazyVim extra |
 | `<leader>ue` | n | Toggle Emmet LSP |
 | `<Esc>` | n | Clear search highlight |

@@ -8,12 +8,19 @@ vim.keymap.set("n", "<leader>za", "ggVG", { desc = "Select whole file" })
 -- Copy whole file to system clipboard
 vim.keymap.set("n", "<leader>zca", ":%y+<CR>", { desc = "Copy all text" })
 
+-- Go to end of file, leave one empty line after the content and start insert on a new line
+-- (if the file already ends with an empty line, reuse it as the separator)
+vim.keymap.set("n", "<leader>zo", function()
+  local last = vim.fn.getline("$")
+  return last:match("^%s*$") and "Go" or "Go<CR>"
+end, { expr = true, desc = "Write at end (after empty line)" })
+
 -- Move selected lines up/down in visual mode
 vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv', {desc = 'Move selected lines down'})
 vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', {desc = 'Move selected lines up'})
 
 -- Restart LSP server
-vim.keymap.set('n', '<leader>zr', '<cmd>LspRestart<cr>', {desc = 'Restart LSP server'})
+vim.keymap.set('n', '<leader>zr', '<cmd>lsp restart<cr>', {desc = 'Restart LSP server'})
 
 -- Make current file executable
 vim.keymap.set('n', '<leader>zx', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make current file executable'})
