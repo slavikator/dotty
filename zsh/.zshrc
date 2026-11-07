@@ -1,52 +1,66 @@
+# ── Environment ──────────────────────────────────────────────────────────────
 export XDG_CONFIG_HOME="$HOME/.config"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 export GOOGLE_CLOUD_PROJECT="next-475218"
 
-
-# Файл, де зберігається історія
-HISTFILE=~/.zsh_history
-
-# Кількість команд для зберігання в історії
-HISTSIZE=10000
-SAVEHIST=10000
-
-# Опції для роботи з історією
-setopt INC_APPEND_HISTORY       # одразу записує команди у файл
-setopt SHARE_HISTORY            # ділиться історією між кількома сесіями
-setopt HIST_IGNORE_DUPS         # не дублює однакові команди
-setopt HIST_IGNORE_SPACE        # не додає команд, які починаються з пробілу
-setopt HIST_VERIFY              # показує команду перед виконанням, якщо взято з історії
-
-# fzf інтеграція
-# Запусти офіційний інсталятор fzf (через Homebrew):
-# $(brew --prefix)/opt/fzf/install
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-if command -v fzf >/dev/null; then
-  bindkey '^R' fzf-history-widget
-fi
-
-# zoxide
-eval "$(zoxide init zsh)"
-
-
-export PATH="$HOME/.local/bin:$PATH"
-
-# Android SDK platform-tools
-export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
-
+# Claude Code: no feedback survey, telemetry or error reporting
 export CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1
 export DISABLE_TELEMETRY=1
 export DISABLE_ERROR_REPORTING=1
 
-# Enable zsh completion system if not already enabled
-autoload -U compinit && compinit
+# ── PATH ─────────────────────────────────────────────────────────────────────
+# Keep entries unique, so nested shells (nvim terminal, tmux) don't pile up duplicates
+typeset -U path PATH
 
-# Enable Terraform autocomplete
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
+path=(
+  "$HOME/.local/bin"
+  "$HOME/.local/share/nvim/mason/bin"         # LSPs/formatters installed by Mason
+  "$HOME/Library/Android/sdk/platform-tools"  # adb, fastboot
+  $path
+)
 
+# ── Node (nvm, lazy-loaded) ──────────────────────────────────────────────────
+# Sourcing nvm.sh costs ~0.3s per shell. Instead, put the default Node version on
+# PATH directly (so node/npm work everywhere, including tools started from nvim)
+# and load nvm itself only the first time the `nvm` command is used.
+export NVM_DIR="$HOME/.nvm"
+
+if [[ -d "$NVM_DIR/versions/node" ]]; then
+  _nvm_default=$(<"$NVM_DIR/alias/default" 2>/dev/null)
+  _nvm_bin=("$NVM_DIR"/versions/node/v${_nvm_default#v}*/bin(N/On))   # matching version, newest first
+  (( ${#_nvm_bin} )) || _nvm_bin=("$NVM_DIR"/versions/node/*/bin(N/nOn))  # fallback: newest installed
+  (( ${#_nvm_bin} )) && path=("${_nvm_bin[1]}" $path)
+  unset _nvm_default _nvm_bin
+fi
+
+nvm() {
+  unfunction nvm
+  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
+
+# ── History ──────────────────────────────────────────────────────────────────
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt SHARE_HISTORY         # write each command immediately and share it between sessions
+setopt EXTENDED_HISTORY      # save a timestamp and duration with each command
+setopt HIST_IGNORE_ALL_DUPS  # drop older copies when a command is repeated
+setopt HIST_IGNORE_SPACE     # don't save commands that start with a space
+setopt HIST_REDUCE_BLANKS    # trim extra whitespace before saving
+setopt HIST_VERIFY           # show a recalled command (e.g. !!) before running it
+
+# ── Completion ───────────────────────────────────────────────────────────────
+# Initialize once, before anything that registers completions
+autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit  # enables bash-style `complete` (used by terraform)
+
+command -v terraform >/dev/null && complete -o nospace -C "$(command -v terraform)" terraform
+
+# ── Tools ────────────────────────────────────────────────────────────────────
+# fzf: Ctrl-R history search, Ctrl-T file picker, Alt-C cd, ** completion
+command -v fzf >/dev/null && source <(fzf --zsh)
+
+# zoxide: keep last, as its docs require
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
