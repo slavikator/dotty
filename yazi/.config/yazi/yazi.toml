@@ -1,3 +1,6 @@
+[mgr]
+linemode = "size"  # show file size on the right of each entry
+
 [opener]
 edit = [
     { run = 'nvim "$@"', block = true, for = "unix" },
